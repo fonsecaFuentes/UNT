@@ -5,7 +5,7 @@ import sqlite3
 import re
 
 
-ligh = True
+light = True
 
 
 def create_db():
@@ -30,22 +30,22 @@ def create_table():
         conection.commit()
 
 
-def alta(forms):
-    alta = {
-        "titulo": entry_add_titulo.get(),
-        "estilo": entry_add_estilo.get(),
-        "desarrollador": entry_add_desarrollador.get(),
-        "precio": entry_add_precio.get(),
-    }
-
+def alta(var_titulo, var_estilo, var_desarrollador, var_precio, forms):
+    cadena = var_precio.get()
     patron = r"^\d+(\.\d{1,2})?$"
 
-    if re.match(patron, alta["precio"]):
+    if re.match(patron, cadena):
+        alta = (
+            var_titulo.get(),
+            var_estilo.get(),
+            var_desarrollador.get(),
+            float(var_precio.get()),
+        )
         conection = create_db()
         cursor = conection.cursor()
         slq = "INSERT INTO data_game (titulo, estilo, desarrollador, precio)\
             VALUES (?, ?, ?, ?)"
-        cursor.execute(slq, tuple(alta.values()))
+        cursor.execute(slq, alta)
         conection.commit()
         actualizar_tree(forms)
     else:
@@ -60,45 +60,34 @@ def tree_selected(event):
         item = forms.item(valor)
         valores = item["values"]
 
-        entry_add_titulo.delete(0, "end")
-        entry_add_titulo.insert(0, valores[0])
-        entry_add_estilo.delete(0, "end")
-        entry_add_estilo.insert(0, valores[1])
-        entry_add_desarrollador.delete(0, "end")
-        entry_add_desarrollador.insert(0, valores[2])
-        entry_add_precio.delete(0, "end")
-        entry_add_precio.insert(0, valores[3])
+        var_titulo.set(valores[0])
+        var_estilo.set(valores[1])
+        var_desarrollador.set(valores[2])
+        var_precio.set(valores[3])
 
 
-def modificar_item(forms):
+def modificar_item(var_titulo, var_estilo, var_desarrollador, var_precio, forms):
     valor = forms.selection()
     item = forms.item(valor)
     mi_id = item["text"]
 
-    alta = {
-        "titulo": entry_add_titulo.get(),
-        "estilo": entry_add_estilo.get(),
-        "desarrollador": entry_add_desarrollador.get(),
-        "precio": entry_add_precio.get(),
-    }
+    cadena = var_precio.get()
     patron = r"^\d+(\.\d{1,2})?$"
 
-    if re.match(patron, alta["precio"]):
+    if re.match(patron, cadena):
+        alta = (
+            var_titulo.get(),
+            var_estilo.get(),
+            var_desarrollador.get(),
+            float(var_precio.get()),
+            mi_id,
+        )
         print("Cadena válida")
         conection = create_db()
         cursor = conection.cursor()
         slq = "UPDATE data_game SET titulo=?, estilo=?, desarrollador=?,\
             precio=? WHERE id=?"
-        cursor.execute(
-            slq,
-            (
-                alta["titulo"],
-                alta["estilo"],
-                alta["desarrollador"],
-                alta["precio"],
-                mi_id,
-            ),
-        )
+        cursor.execute(slq, alta)
         conection.commit()
         actualizar_tree(forms)
     else:
@@ -139,8 +128,8 @@ def actualizar_tree(mitreview):
         )
 
 
-def search(mitreview):
-    imput_search = entry_search.get()
+def search(var_search, mitreview):
+    imput_search = var_search.get()
     conection = create_db()
     cursor = conection.cursor()
     sql = "SELECT titulo, estilo, desarrollador, precio FROM data_game WHERE\
@@ -156,12 +145,14 @@ def search(mitreview):
         mitreview.insert("", "end", values=(fila[0], fila[1], fila[2], fila[3]))
 
 
-def clean_fields(forms):
-    entry_add_titulo.delete(0, "end")
-    entry_add_estilo.delete(0, "end")
-    entry_add_desarrollador.delete(0, "end")
-    entry_add_precio.delete(0, "end")
-    entry_search.delete(0, "end")
+def clean_fields(
+    var_titulo, var_estilo, var_desarrollador, var_precio, var_search, forms
+):
+    var_titulo.set("")
+    var_estilo.set("")
+    var_desarrollador.set("")
+    var_precio.set("")
+    var_search.set("")
     actualizar_tree(forms)
 
 
@@ -172,18 +163,18 @@ def connect(forms):
 
 
 def change_colors():
-    global ligh
+    global light
 
-    if ligh:
+    if light:
         bg_color = "#E0E0E0"
         fg_color = "#000000"
         highlight_color = "#FFFFFF"
-        ligh = False
+        light = False
     else:
         bg_color = "#1E1E1E"
         fg_color = "#FFFFFF"
         highlight_color = "#606060"
-        ligh = True
+        light = True
 
     master.configure(background=bg_color)
     buscar.configure(background=bg_color, foreground=fg_color)
@@ -207,11 +198,12 @@ def change_colors():
 master = Tk()
 
 # variables
+# variables
 var_titulo = StringVar()
 var_estilo = StringVar()
 var_desarrollador = StringVar()
-entry_search = StringVar()
-var_precio = IntVar()
+var_search = StringVar()
+var_precio = StringVar()
 
 # lista
 forms = ttk.Treeview(master)
@@ -258,38 +250,54 @@ precio.grid(row=14, column=6, sticky=E, padx=8)
 # imputs
 
 # imput de busqueda
-entry_search = Entry(master)
+entry_search = Entry(master, textvariable=var_search)
 entry_search.grid(row=3, column=0, sticky="nsew", pady=8, padx=8)
 
 # imputs agregar y modificar
-entry_add_titulo = Entry(master)
+entry_add_titulo = Entry(master, textvariable=var_titulo)
 entry_add_titulo.grid(row=13, column=0, columnspan=3, sticky="nsew", pady=8, padx=8)
 
-entry_add_estilo = Entry(master)
+entry_add_estilo = Entry(master, textvariable=var_estilo)
 entry_add_estilo.grid(row=15, column=0, columnspan=3, sticky="nsew", pady=8, padx=8)
 
-entry_add_desarrollador = Entry(master, width=36)
+entry_add_desarrollador = Entry(master, textvariable=var_desarrollador, width=36)
 entry_add_desarrollador.grid(
     row=13, column=4, columnspan=3, sticky="nsew", pady=8, padx=8
 )
 
-entry_add_precio = Entry(master)
+entry_add_precio = Entry(master, textvariable=var_precio)
 entry_add_precio.grid(row=15, column=4, columnspan=3, sticky="nsew", pady=8, padx=8)
 
 # botones
 
 # boton de busqueda
-boton_search = Button(master, text="Buscar", command=lambda: search(forms))
+boton_search = Button(master, text="Buscar", command=lambda: search(var_search, forms))
 boton_search.grid(row=3, column=6, sticky="nsew", pady=8, padx=8)
 
 # botones agregar, modificar, borrar y limpiar
-boton_add = Button(master, text="AGREGAR", command=lambda: alta(forms))
+boton_add = Button(
+    master,
+    text="AGREGAR",
+    command=lambda: alta(var_titulo, var_estilo, var_desarrollador, var_precio, forms),
+)
 boton_add.grid(row=16, column=0, sticky="nsew", pady=8, padx=8)
 
-boton_clean = Button(master, text="LIMPIAR", command=lambda: clean_fields(forms))
+boton_clean = Button(
+    master,
+    text="LIMPIAR",
+    command=lambda: clean_fields(
+        var_titulo, var_estilo, var_desarrollador, var_precio, var_search, forms
+    ),
+)
 boton_clean.grid(row=16, column=6, sticky="nsew", pady=8, padx=8)
 
-boton_modify = Button(master, text=" MODIFICAR ", command=lambda: modificar_item(forms))
+boton_modify = Button(
+    master,
+    text=" MODIFICAR ",
+    command=lambda: modificar_item(
+        var_titulo, var_estilo, var_desarrollador, var_precio, forms
+    ),
+)
 boton_modify.grid(row=6, column=6, sticky="nsew", pady=8, padx=8)
 
 boton_del = Button(master, text=" BORRAR ", command=lambda: borrar_item(forms))
