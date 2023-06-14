@@ -16,18 +16,11 @@ def create_db():
 def create_table():
     conection = create_db()
     cursor = conection.cursor()
-    cursor.execute(
-        "SELECT name FROM sqlite_master WHERE type='table'\
-         AND name='data_game'"
-    )
-    table_ok = cursor.fetchone()
-
-    if not table_ok:
-        slq = "CREATE TABLE data_game (id INTEGER PRIMARY KEY,\
+    slq = "CREATE TABLE IF NOT EXISTS data_game (id INTEGER PRIMARY KEY,\
             titulo VARCHAR(255), estilo VARCHAR(255), desarrollador\
             VARCHAR(255), precio INTEGER (5))"
-        cursor.execute(slq)
-        conection.commit()
+    cursor.execute(slq)
+    conection.commit()
 
 
 def alta(var_titulo, var_estilo, var_desarrollador, var_precio, forms):
