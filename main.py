@@ -5,6 +5,9 @@ import sqlite3
 import re
 
 
+# MODELO
+
+# variable para la funcion change_colors
 light = True
 
 
@@ -112,7 +115,7 @@ def borrar_item(forms):
                 cursor.execute(sql, data)
                 conection.commit()
                 forms.delete(element)
-        messagebox.showinfo("Aviso", "datos borrado exitosamente.")
+        messagebox.showinfo("Aviso", "datos borrados exitosamente.")
 
 
 def actualizar_tree(mitreview):
@@ -199,9 +202,10 @@ def change_colors():
     boton_colors.configure(background=highlight_color, foreground=fg_color)
 
 
+# VISTA
+
 master = Tk()
 
-# variables
 # variables
 var_titulo = StringVar()
 var_estilo = StringVar()
@@ -209,7 +213,7 @@ var_desarrollador = StringVar()
 var_search = StringVar()
 var_precio = StringVar()
 
-# lista
+# TREEVIEW
 forms = ttk.Treeview(master)
 forms["columns"] = ("titulo", "estilo", "desarrollador", "precio")
 forms.column("#0", width=0, minwidth=0)
