@@ -41,6 +41,7 @@ def alta(var_titulo, var_estilo, var_desarrollador, var_precio, forms):
         cursor.execute(slq, alta)
         conection.commit()
         actualizar_tree(forms)
+        messagebox.showinfo("Aviso", "Juego agregado exitosamente.")
     else:
         messagebox.showwarning(
             "Validación", "El valor en el imputs 'precio' no es válido"
@@ -84,6 +85,7 @@ def modificar_item(var_titulo, var_estilo, var_desarrollador, var_precio, forms)
         cursor.execute(slq, alta)
         conection.commit()
         actualizar_tree(forms)
+        messagebox.showinfo("Aviso", "Juego modificado exitosamente.")
     else:
         print("Cadena no válida")
         messagebox.showwarning(
@@ -93,17 +95,24 @@ def modificar_item(var_titulo, var_estilo, var_desarrollador, var_precio, forms)
 
 def borrar_item(forms):
     valor = forms.selection()
-    for element in valor:
-        item = forms.item(element)
-        mi_id = item["text"]
+    if valor:
+        confirmar = messagebox.askyesno(
+            "Confirmación",
+            "¿Estás seguro de que deseas borrar los datos seleccionados?",
+        )
+        if confirmar:
+            for element in valor:
+                item = forms.item(element)
+                mi_id = item["text"]
 
-        conection = create_db()
-        cursor = conection.cursor()
-        data = (mi_id,)
-        sql = "DELETE FROM data_game WHERE id = ?"
-        cursor.execute(sql, data)
-        conection.commit()
-        forms.delete(element)
+                conection = create_db()
+                cursor = conection.cursor()
+                data = (mi_id,)
+                sql = "DELETE FROM data_game WHERE id = ?"
+                cursor.execute(sql, data)
+                conection.commit()
+                forms.delete(element)
+        messagebox.showinfo("Aviso", "datos borrado exitosamente.")
 
 
 def actualizar_tree(mitreview):
