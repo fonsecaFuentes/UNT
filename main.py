@@ -205,6 +205,7 @@ def change_colors():
 # VISTA
 
 master = Tk()
+master.title("Lista de Juegos")
 
 # variables
 var_titulo = StringVar()
