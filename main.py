@@ -27,28 +27,40 @@ def create_table():
 
 
 def alta(var_titulo, var_estilo, var_desarrollador, var_precio, forms):
-    cadena = var_precio.get()
-    patron = r"^\d+(\.\d{1,2})?$"
+    titulo = var_titulo.get()
+    estilo = var_estilo.get()
+    desarrollador = var_desarrollador.get()
+    precio = var_precio.get()
+    numero = r"^\d+(\.\d{1,2})?$"
+    nulo = r"^\S+$"
 
-    if re.match(patron, cadena):
-        alta = (
-            var_titulo.get(),
-            var_estilo.get(),
-            var_desarrollador.get(),
-            float(var_precio.get()),
-        )
-        conection = create_db()
-        cursor = conection.cursor()
-        slq = "INSERT INTO data_game (titulo, estilo, desarrollador, precio)\
-            VALUES (?, ?, ?, ?)"
-        cursor.execute(slq, alta)
-        conection.commit()
-        actualizar_tree(forms)
-        messagebox.showinfo("Aviso", "Juego agregado exitosamente.")
+    if (
+        re.match(nulo, titulo)
+        and re.match(nulo, estilo)
+        and re.match(nulo, desarrollador)
+        and re.match(nulo, precio)
+    ):
+        if re.match(numero, precio):
+            alta = (
+                var_titulo.get(),
+                var_estilo.get(),
+                var_desarrollador.get(),
+                float(var_precio.get()),
+            )
+            conection = create_db()
+            cursor = conection.cursor()
+            slq = "INSERT INTO data_game (titulo, estilo, desarrollador, precio)\
+                VALUES (?, ?, ?, ?)"
+            cursor.execute(slq, alta)
+            conection.commit()
+            actualizar_tree(forms)
+            messagebox.showinfo("Aviso", "Juego agregado exitosamente.")
+        else:
+            messagebox.showwarning(
+                "Validación", "El valor en el imputs 'precio' no es válido"
+            )
     else:
-        messagebox.showwarning(
-            "Validación", "El valor en el imputs 'precio' no es válido"
-        )
+        messagebox.showwarning("Validación", "Tienes campos sin completar")
 
 
 def tree_selected(event):
@@ -69,31 +81,43 @@ def modificar_item(var_titulo, var_estilo, var_desarrollador, var_precio, forms)
     item = forms.item(valor)
     mi_id = item["text"]
 
-    cadena = var_precio.get()
-    patron = r"^\d+(\.\d{1,2})?$"
+    titulo = var_titulo.get()
+    estilo = var_estilo.get()
+    desarrollador = var_desarrollador.get()
+    precio = var_precio.get()
+    numero = r"^\d+(\.\d{1,2})?$"
+    nulo = r"^\S+$"
 
-    if re.match(patron, cadena):
-        alta = (
-            var_titulo.get(),
-            var_estilo.get(),
-            var_desarrollador.get(),
-            float(var_precio.get()),
-            mi_id,
-        )
-        print("Cadena válida")
-        conection = create_db()
-        cursor = conection.cursor()
-        slq = "UPDATE data_game SET titulo=?, estilo=?, desarrollador=?,\
-            precio=? WHERE id=?"
-        cursor.execute(slq, alta)
-        conection.commit()
-        actualizar_tree(forms)
-        messagebox.showinfo("Aviso", "Juego modificado exitosamente.")
+    if (
+        re.match(nulo, titulo)
+        and re.match(nulo, estilo)
+        and re.match(nulo, desarrollador)
+        and re.match(nulo, precio)
+    ):
+        if re.match(numero, precio):
+            alta = (
+                var_titulo.get(),
+                var_estilo.get(),
+                var_desarrollador.get(),
+                float(var_precio.get()),
+                mi_id,
+            )
+            print("Cadena válida")
+            conection = create_db()
+            cursor = conection.cursor()
+            slq = "UPDATE data_game SET titulo=?, estilo=?, desarrollador=?,\
+                precio=? WHERE id=?"
+            cursor.execute(slq, alta)
+            conection.commit()
+            actualizar_tree(forms)
+            messagebox.showinfo("Aviso", "Juego modificado exitosamente.")
+        else:
+            print("Cadena no válida")
+            messagebox.showwarning(
+                "Validación", "El valor en el imputs 'precio' no es válido"
+            )
     else:
-        print("Cadena no válida")
-        messagebox.showwarning(
-            "Validación", "El valor en el imputs 'precio' no es válido"
-        )
+        messagebox.showwarning("Validación", "Tienes campos sin completar")
 
 
 def borrar_item(forms):
