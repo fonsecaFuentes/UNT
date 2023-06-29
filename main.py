@@ -32,7 +32,7 @@ def alta(var_titulo, var_estilo, var_desarrollador, var_precio, forms):
     desarrollador = var_desarrollador.get()
     precio = var_precio.get()
     numero = r"^\d+(\.\d{1,2})?$"
-    nulo = r"^\S+$"
+    nulo = r"^(?!\s*$).+"
 
     if (
         re.match(nulo, titulo)
@@ -78,46 +78,58 @@ def tree_selected(event):
 
 def modificar_item(var_titulo, var_estilo, var_desarrollador, var_precio, forms):
     valor = forms.selection()
-    item = forms.item(valor)
-    mi_id = item["text"]
+    if valor:
+        numero = r"^\d+(\.\d{1,2})?$"
+        nulo = r"^(?!\s*$).+"
+        field = False
 
-    titulo = var_titulo.get()
-    estilo = var_estilo.get()
-    desarrollador = var_desarrollador.get()
-    precio = var_precio.get()
-    numero = r"^\d+(\.\d{1,2})?$"
-    nulo = r"^\S+$"
+        match_data = (
+            var_titulo.get(),
+            var_estilo.get(),
+            var_desarrollador.get(),
+            var_precio.get(),
+        )
 
-    if (
-        re.match(nulo, titulo)
-        and re.match(nulo, estilo)
-        and re.match(nulo, desarrollador)
-        and re.match(nulo, precio)
-    ):
-        if re.match(numero, precio):
-            alta = (
-                var_titulo.get(),
-                var_estilo.get(),
-                var_desarrollador.get(),
-                float(var_precio.get()),
-                mi_id,
-            )
-            print("Cadena válida")
-            conection = create_db()
-            cursor = conection.cursor()
-            slq = "UPDATE data_game SET titulo=?, estilo=?, desarrollador=?,\
-                precio=? WHERE id=?"
-            cursor.execute(slq, alta)
-            conection.commit()
-            actualizar_tree(forms)
-            messagebox.showinfo("Aviso", "Juego modificado exitosamente.")
-        else:
-            print("Cadena no válida")
+        for element in match_data:
+            if not re.match(nulo, element):
+                field = True
+                break
+
+        if field:
+            messagebox.showwarning("Validación", "Tienes campos sin completar")
+
+        elif not re.match(numero, match_data[3]):
             messagebox.showwarning(
                 "Validación", "El valor en el imputs 'precio' no es válido"
             )
-    else:
-        messagebox.showwarning("Validación", "Tienes campos sin completar")
+
+        else:
+            confirm = messagebox.askyesno(
+                "Confirmación",
+                "¿Estás seguro de que deseas modificar los datos\
+                seleccionados?",
+            )
+
+            if confirm:
+                item = forms.item(valor)
+                mi_id = item["text"]
+
+                data = (
+                    var_titulo.get(),
+                    var_estilo.get(),
+                    var_desarrollador.get(),
+                    float(var_precio.get()),
+                    mi_id,
+                )
+                print("Cadena válida")
+                conection = create_db()
+                cursor = conection.cursor()
+                slq = "UPDATE data_game SET titulo=?, estilo=?,\
+                    desarrollador=?, precio=? WHERE id=?"
+                cursor.execute(slq, data)
+                conection.commit()
+                actualizar_tree(forms)
+                messagebox.showinfo("Aviso", "Juego modificado exitosamente.")
 
 
 def borrar_item(forms):
