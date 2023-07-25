@@ -44,6 +44,10 @@ def validate_price(precio):
 
 
 def alta_item(titulo, estilo, desarrollador, precio, forms):
+    titulo = titulo.get()
+    estilo = estilo.get()
+    desarrollador = desarrollador.get()
+    precio = precio.get()
     if validate_fields(titulo, estilo, desarrollador, precio):
         if validate_price(precio):
             data = (titulo, estilo, desarrollador, float(precio))
@@ -86,6 +90,10 @@ def del_item(forms):
 
 
 def modify_item(titulo, estilo, desarrollador, precio, forms):
+    titulo = titulo.get()
+    estilo = estilo.get()
+    desarrollador = desarrollador.get()
+    precio = precio.get()
     valor = forms.selection()
     if valor:
         item = forms.item(valor)

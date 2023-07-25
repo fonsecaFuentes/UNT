@@ -140,10 +140,10 @@ def vista_app(master):
         master,
         text="AGREGAR",
         command=lambda: app_modelo.alta_item(
-            var_titulo.get(),
-            var_estilo.get(),
-            var_desarrollador.get(),
-            var_precio.get(),
+            var_titulo,
+            var_estilo,
+            var_desarrollador,
+            var_precio,
             forms
             ),
     )
@@ -167,10 +167,10 @@ def vista_app(master):
         master,
         text=" MODIFICAR ",
         command=lambda: app_modelo.modify_item(
-            var_titulo.get(),
-            var_estilo.get(),
-            var_desarrollador.get(),
-            var_precio.get(),
+            var_titulo,
+            var_estilo,
+            var_desarrollador,
+            var_precio,
             forms))
     boton_modify.grid(row=6, column=6, sticky="nsew", pady=8, padx=8)
 
