@@ -8,19 +8,6 @@ import app_modelo
 
 def vista_app(master):
 
-    def connect(forms):
-        app_modelo.create_db()
-        app_modelo.create_table()
-        app_modelo.actualizar_tree(forms)
-        app_modelo.change_colors(
-            master, buscar, titulo, estilo,
-            desarrollador, precio, entry_search,
-            entry_add_titulo, entry_add_estilo,
-            entry_add_desarrollador, entry_add_precio,
-            boton_search, boton_add, boton_clean,
-            boton_modify, boton_del, boton_colors
-        )
-
     master.title("Lista de Juegos")
 
     # variables
@@ -181,15 +168,15 @@ def vista_app(master):
 
     boton_colors = Button(
         master, text="Change Colors",
-        command=lambda: app_modelo.change_colors(
-            master, buscar, titulo, estilo,
-            desarrollador, precio, entry_search,
-            entry_add_titulo, entry_add_estilo,
-            entry_add_desarrollador, entry_add_precio,
-            boton_search, boton_add, boton_clean,
-            boton_modify, boton_del, boton_colors
-            )
+        command=lambda: app_modelo.change_colors(element_list)
         )
     boton_colors.grid(row=2, column=6, sticky="nsew", pady=8, padx=8)
 
-    connect(forms)
+    # lista de elementos de la interfaz
+    element_list = [master, buscar, titulo, estilo, desarrollador, precio,
+                    entry_search, entry_add_titulo, entry_add_estilo,
+                    entry_add_desarrollador, entry_add_precio,
+                    boton_search, boton_add, boton_clean,
+                    boton_modify, boton_del, boton_colors]
+
+    app_modelo.connect(forms, element_list)

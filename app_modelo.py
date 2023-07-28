@@ -181,11 +181,7 @@ def tree_selected(
             var_precio.set(valor[3])
 
 
-def change_colors(master, buscar, titulo, estilo, desarrollador, precio,
-                  entry_search, entry_add_titulo, entry_add_estilo,
-                  entry_add_desarrollador, entry_add_precio,
-                  boton_search, boton_add, boton_clean,
-                  boton_modify, boton_del, boton_colors):
+def change_colors(elements_list):
 
     global light
 
@@ -200,22 +196,43 @@ def change_colors(master, buscar, titulo, estilo, desarrollador, precio,
         highlight_color = "#606060"
         light = True
 
-    master.configure(background=bg_color)
-    buscar.configure(background=bg_color, foreground=fg_color)
-    titulo.configure(background=bg_color, foreground=fg_color)
-    estilo.configure(background=bg_color, foreground=fg_color)
-    desarrollador.configure(background=bg_color, foreground=fg_color)
-    precio.configure(background=bg_color, foreground=fg_color)
-    entry_search.configure(background=highlight_color, foreground=fg_color)
-    entry_add_titulo.configure(background=highlight_color, foreground=fg_color)
-    entry_add_estilo.configure(background=highlight_color, foreground=fg_color)
-    entry_add_desarrollador.configure(
+    elements_list[0].configure(background=bg_color)
+    elements_list[1].configure(background=bg_color, foreground=fg_color)
+    elements_list[2].configure(background=bg_color, foreground=fg_color)
+    elements_list[3].configure(background=bg_color, foreground=fg_color)
+    elements_list[4].configure(background=bg_color, foreground=fg_color)
+    elements_list[5].configure(background=bg_color, foreground=fg_color)
+    elements_list[6].configure(background=highlight_color, foreground=fg_color)
+    elements_list[7].configure(background=highlight_color, foreground=fg_color)
+    elements_list[8].configure(background=highlight_color, foreground=fg_color)
+    elements_list[9].configure(
         background=highlight_color, foreground=fg_color
     )
-    entry_add_precio.configure(background=highlight_color, foreground=fg_color)
-    boton_search.configure(background=highlight_color, foreground=fg_color)
-    boton_add.configure(background=highlight_color, foreground=fg_color)
-    boton_clean.configure(background=highlight_color, foreground=fg_color)
-    boton_modify.configure(background=highlight_color, foreground=fg_color)
-    boton_del.configure(background=highlight_color, foreground=fg_color)
-    boton_colors.configure(background=highlight_color, foreground=fg_color)
+    elements_list[10].configure(
+        background=highlight_color, foreground=fg_color
+    )
+    elements_list[11].configure(
+        background=highlight_color, foreground=fg_color
+    )
+    elements_list[12].configure(
+        background=highlight_color, foreground=fg_color
+    )
+    elements_list[13].configure(
+        background=highlight_color, foreground=fg_color
+    )
+    elements_list[14].configure(
+        background=highlight_color, foreground=fg_color
+    )
+    elements_list[15].configure(
+        background=highlight_color, foreground=fg_color
+    )
+    elements_list[16].configure(
+        background=highlight_color, foreground=fg_color
+    )
+
+
+def connect(forms, elements_list):
+    create_db()
+    create_table()
+    actualizar_tree(forms)
+    change_colors(elements_list)
