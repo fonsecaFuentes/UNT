@@ -1,24 +1,33 @@
 import sqlite3
 import re
+import os
 from tkinter import messagebox
 
 
 class CreatingDatabaseTables():
     def __init__(self):
-        self.connection = None
-        self.cursor = None
+        self.directory_path = os.path.dirname(__file__)
+        self.new_db_path = os.path.join(
+            self.directory_path, "database", "GameDataBase.db"
+        )
+        self.file_db = self.new_db_path
+        database_dir = os.path.dirname(self.file_db)
+        if not os.path.exists(database_dir):
+            os.makedirs(database_dir)
+        self.connect = self.connection()
 
-    def create_db(self):
-        self.connection = sqlite3.connect("GameDataBase.db")
-        self.cursor = self.connection.cursor()
+    def connection(self):
+        connect = sqlite3.connect(self.file_db)
+        return connect
 
     def create_table(self):
-        self.create_db()
+        connect = self.connect
+        cursor = connect.cursor()
         sql = "CREATE TABLE IF NOT EXISTS data_game (id INTEGER PRIMARY KEY,\
             titulo VARCHAR(255), estilo VARCHAR(255), desarrollador\
             VARCHAR(255), precio INTEGER (5))"
-        self.cursor.execute(sql)
-        self.connection.commit()
+        cursor.execute(sql)
+        connect.commit()
 
 
 class FieldValidation():
@@ -44,27 +53,30 @@ class FieldValidation():
 
 
 class DataManagement():
+    def __init__(self):
+        self.connect_db = CreatingDatabaseTables()
+        self.validation = FieldValidation()
 
     def alta_item(self, titulo, estilo, desarrollador, precio, forms):
-        #
-        creating_db = CreatingDatabaseTables()
-        fiels_validation = FieldValidation()
-        #
+        connect = self.connect_db.connection()
+        fiels_validation = self.validation.validate_fields
+        validation_price = self.validation.validate_price
+
         titulo = titulo.get()
         estilo = estilo.get()
         desarrollador = desarrollador.get()
         precio = precio.get()
-        if fiels_validation.validate_fields(
+        if fiels_validation(
             titulo, estilo, desarrollador, precio
         ):
-            if fiels_validation.validate_price(precio):
+            if validation_price(precio):
                 data = (titulo, estilo, desarrollador, float(precio))
 
-                creating_db.create_db()
+                cursor = connect.cursor()
                 sql = "INSERT INTO data_game (titulo, estilo, desarrollador,\
                     precio) VALUES (?, ?, ?, ?)"
-                creating_db.cursor.execute(sql, data)
-                creating_db.connection.commit()
+                cursor.execute(sql, data)
+                connect.commit()
                 self.actualizar_tree(forms)
                 messagebox.showinfo("Aviso", "Juego agregado exitosamente.")
             else:
@@ -75,9 +87,8 @@ class DataManagement():
             messagebox.showwarning("Validación", "Tienes campos sin completar")
 
     def del_item(self, forms):
-        #
-        creating_db = CreatingDatabaseTables()
-        #
+        connect = self.connect_db.connection()
+
         valor = forms.selection()
         if valor:
             confirmar = messagebox.askyesno(
@@ -88,19 +99,19 @@ class DataManagement():
                 for element in valor:
                     item = forms.item(element)
                     mi_id = item["text"]
-                    creating_db.create_db()
+                    cursor = connect.cursor()
                     data = (mi_id,)
                     sql = "DELETE FROM data_game WHERE id = ?"
-                    creating_db.cursor.execute(sql, data)
-                    creating_db.connection.commit()
+                    cursor.execute(sql, data)
+                    connect.commit()
                     forms.delete(element)
             messagebox.showinfo("Aviso", "datos borrados exitosamente.")
 
     def modify_item(self, titulo, estilo, desarrollador, precio, forms):
-        #
-        creating_db = CreatingDatabaseTables()
-        fiels_validation = FieldValidation()
-        #
+        connect = self.connect_db.connection()
+        fiels_validation = self.validation.validate_fields
+        validation_price = self.validation.validate_price
+
         titulo = titulo.get()
         estilo = estilo.get()
         desarrollador = desarrollador.get()
@@ -109,18 +120,18 @@ class DataManagement():
         if valor:
             item = forms.item(valor)
             mi_id = item['text']
-            if fiels_validation.validate_fields(
+            if fiels_validation(
                 titulo, estilo, desarrollador, precio
             ):
-                if fiels_validation.validate_price(precio):
+                if validation_price(precio):
                     data = (
                         titulo, estilo, desarrollador, float(precio), mi_id
                     )
-                    creating_db.create_db()
+                    cursor = connect.cursor()
                     slq = "UPDATE data_game SET titulo=?, estilo=?,\
                             desarrollador=?, precio=? WHERE id=?"
-                    creating_db.cursor.execute(slq, data)
-                    creating_db.connection.commit()
+                    cursor.execute(slq, data)
+                    connect.commit()
                     self.actualizar_tree(forms)
                     messagebox.showinfo(
                         "Aviso", "Juego modificado exitosamente."
@@ -136,10 +147,10 @@ class DataManagement():
                 )
 
     def get_item(self):
-        creating_db = CreatingDatabaseTables()
-        creating_db.create_db()
+        connect = self.connect_db.connection()
+        cursor = connect.cursor()
         sql = "SELECT *  FROM data_game ORDER BY id ASC"
-        data = creating_db.cursor.execute(sql)
+        data = cursor.execute(sql)
 
         return data.fetchall()
 
@@ -156,13 +167,12 @@ class DataManagement():
             )
 
     def search_item(self, var_search, mitreview):
-        #
-        creating_db = CreatingDatabaseTables()
-        #
-        creating_db.create_db()
+        connect = self.connect_db.connection()
+
+        cursor = connect.cursor()
         sql = "SELECT titulo, estilo, desarrollador, precio FROM data_game\
              WHERE titulo LIKE ? OR estilo LIKE ? OR desarrollador LIKE ?"
-        data = creating_db.cursor.execute(
+        data = cursor.execute(
             sql, (var_search, var_search, var_search)
         )
         result = data.fetchall()
@@ -174,13 +184,6 @@ class DataManagement():
                 "", "end", values=(fila[0], fila[1], fila[2], fila[3])
             )
 
-    def connect(self, forms):
-        #
-        creating_db = CreatingDatabaseTables()
-        #
-        creating_db.create_db()
-        self.actualizar_tree(forms)
-
 
 class InterfaceManagement():
     def __init__(self):
@@ -190,9 +193,9 @@ class InterfaceManagement():
         self, var_titulo, var_estilo, var_desarrollador,
         var_precio, var_search, forms
     ):
-        #
+
         data_management = DataManagement()
-        #
+
         var_titulo.set("")
         var_estilo.set("")
         var_desarrollador.set("")
@@ -215,7 +218,6 @@ class InterfaceManagement():
                 var_precio.set(valor[3])
 
     def change_colors(self, elements_list):
-
         if self.light:
             bg_color = "#E0E0E0"
             fg_color = "#000000"

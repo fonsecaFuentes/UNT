@@ -3,54 +3,56 @@ from tkinter import Label
 from tkinter import Button
 from tkinter import Entry
 from tkinter import StringVar
-import app_models
+from app_models import DataManagement
+from app_models import InterfaceManagement
 
 
 class MyApp():
-    def __init__(self, master, app_model):
+    def __init__(self, master):
         self.master = master
-        self.app_model = app_model
-        self.vista_app()
-
-    def vista_app(self):
-
-        data_management = app_models.DataManagement()
-        interface_management = app_models.InterfaceManagement()
+        self.data_management = DataManagement()
+        self.interface_management = InterfaceManagement()
 
         self.master.title("Lista de Juegos")
 
         # variables
-        var_titulo = StringVar()
-        var_estilo = StringVar()
-        var_desarrollador = StringVar()
-        var_search = StringVar()
-        var_precio = StringVar()
+        self.var_titulo = StringVar()
+        self.var_estilo = StringVar()
+        self.var_desarrollador = StringVar()
+        self.var_search = StringVar()
+        self.var_precio = StringVar()
 
         # TREEVIEW
-        forms = ttk.Treeview(self.master)
-        forms["columns"] = ("titulo", "estilo", "desarrollador", "precio")
-        forms.column("#0", width=0, minwidth=0)
-        forms.column("titulo", width=100, minwidth=100)
-        forms.column("estilo", width=100, minwidth=100)
-        forms.column("desarrollador", width=100, minwidth=100)
-        forms.column("precio", width=100, minwidth=100)
+        self.forms = ttk.Treeview(self.master)
+        self.forms["columns"] = ("titulo", "estilo", "desarrollador", "precio")
+        self.forms.column("#0", width=0, minwidth=0)
+        self.forms.column("titulo", width=100, minwidth=100)
+        self.forms.column("estilo", width=100, minwidth=100)
+        self.forms.column("desarrollador", width=100, minwidth=100)
+        self.forms.column("precio", width=100, minwidth=100)
 
-        forms.heading("#0", text="")
-        forms.heading("titulo", text="Título")
-        forms.heading("estilo", text="Estilo")
-        forms.heading("desarrollador", text="Desarrollador")
-        forms.heading("precio", text="Precio")
+        self.forms.heading("#0", text="")
+        self.forms.heading("titulo", text="Título")
+        self.forms.heading("estilo", text="Estilo")
+        self.forms.heading("desarrollador", text="Desarrollador")
+        self.forms.heading("precio", text="Precio")
 
-        forms.grid(row=4, rowspan=3, column=0, columnspan=5, pady=8, padx=8)
-        forms.bind(
+        self.forms.grid(
+            row=4, rowspan=3, column=0, columnspan=5, pady=8, padx=8
+        )
+        self.forms.bind(
             "<<TreeviewSelect>>",
-            lambda event: interface_management.tree_selected(
-                forms, var_titulo, var_estilo, var_desarrollador, var_precio
+            lambda event: self.interface_management.tree_selected(
+                self.forms,
+                self.var_titulo,
+                self.var_estilo,
+                self.var_desarrollador,
+                self.var_precio
             )
         )
 
         # labels
-        final_work = Label(
+        self.final_work = Label(
             self.master,
             text="TRABAJO FINAL",
             bg="DarkOrchid3",
@@ -58,7 +60,7 @@ class MyApp():
             height=1,
             width=40
         )
-        final_work.grid(
+        self.final_work.grid(
             row=0,
             rowspan=2,
             column=0,
@@ -68,14 +70,14 @@ class MyApp():
             padx=8
         )
 
-        layout = Label(
+        self.layout = Label(
             self.master, text="",
             bg="DarkOrchid3",
             fg="thistle1",
             height=1,
             width=40
         )
-        layout.grid(
+        self.layout.grid(
             row=8,
             rowspan=2,
             column=0,
@@ -85,117 +87,126 @@ class MyApp():
             padx=8
         )
 
-        buscar = Label(self.master, text="BUSCAR")
-        buscar.grid(row=2, column=0, sticky="w", pady=1, padx=8)
+        self.buscar = Label(self.master, text="BUSCAR")
+        self.buscar.grid(row=2, column=0, sticky="w", pady=1, padx=8)
 
-        titulo = Label(self.master, text="Titulo")
-        titulo.grid(row=12, column=0, sticky="w", padx=8)
+        self.titulo = Label(self.master, text="Titulo")
+        self.titulo.grid(row=12, column=0, sticky="w", padx=8)
 
-        estilo = Label(self.master, text="Estilo")
-        estilo.grid(row=14, column=0, sticky="w", padx=8)
+        self.estilo = Label(self.master, text="Estilo")
+        self.estilo.grid(row=14, column=0, sticky="w", padx=8)
 
-        desarrollador = Label(self.master, text="Desarrollador")
-        desarrollador.grid(row=12, column=6, sticky="e", padx=8)
+        self.desarrollador = Label(self.master, text="Desarrollador")
+        self.desarrollador.grid(row=12, column=6, sticky="e", padx=8)
 
-        precio = Label(self.master, text="Precio")
-        precio.grid(row=14, column=6, sticky="e", padx=8)
+        self.precio = Label(self.master, text="Precio")
+        self.precio.grid(row=14, column=6, sticky="e", padx=8)
 
         # imputs
 
         # imput de busqueda
-        entry_search = Entry(self.master, textvariable=var_search)
-        entry_search.grid(row=3, column=0, sticky="nsew", pady=8, padx=8)
+        self.entry_search = Entry(self.master, textvariable=self.var_search)
+        self.entry_search.grid(row=3, column=0, sticky="nsew", pady=8, padx=8)
 
         # imputs agregar y modificar
-        entry_add_titulo = Entry(self.master, textvariable=var_titulo)
-        entry_add_titulo.grid(
+        self.entry_add_titulo = Entry(
+            self.master, textvariable=self.var_titulo
+        )
+        self.entry_add_titulo.grid(
             row=13, column=0, columnspan=3, sticky="nsew", pady=8, padx=8
         )
 
-        entry_add_estilo = Entry(self.master, textvariable=var_estilo)
-        entry_add_estilo.grid(
+        self.entry_add_estilo = Entry(
+            self.master, textvariable=self.var_estilo
+        )
+        self.entry_add_estilo.grid(
             row=15, column=0, columnspan=3, sticky="nsew", pady=8, padx=8
         )
 
-        entry_add_desarrollador = Entry(
-            self.master, textvariable=var_desarrollador, width=36
+        self.entry_add_desarrollador = Entry(
+            self.master, textvariable=self.var_desarrollador, width=36
         )
-        entry_add_desarrollador.grid(
+        self.entry_add_desarrollador.grid(
             row=13, column=4, columnspan=3, sticky="nsew", pady=8, padx=8
         )
 
-        entry_add_precio = Entry(self.master, textvariable=var_precio)
-        entry_add_precio.grid(
+        self.entry_add_precio = Entry(
+            self.master, textvariable=self.var_precio
+        )
+        self.entry_add_precio.grid(
             row=15, column=4, columnspan=3, sticky="nsew", pady=8, padx=8
         )
 
         # botones
 
         # boton de busqueda
-        boton_search = Button(
+        self.boton_search = Button(
             self.master, text="Buscar",
-            command=lambda: data_management.search_item(
-                var_search.get(), forms
+            command=lambda: self.data_management.search_item(
+                self.var_search.get(), self.forms
             )
         )
-        boton_search.grid(row=3, column=6, sticky="nsew", pady=8, padx=8)
+        self.boton_search.grid(row=3, column=6, sticky="nsew", pady=8, padx=8)
 
         # botones agregar, modificar, borrar y limpiar
-        boton_add = Button(
+        self.boton_add = Button(
             self.master,
             text="AGREGAR",
-            command=lambda: data_management.alta_item(
-                var_titulo,
-                var_estilo,
-                var_desarrollador,
-                var_precio,
-                forms
+            command=lambda: self.data_management.alta_item(
+                self.var_titulo,
+                self.var_estilo,
+                self.var_desarrollador,
+                self.var_precio,
+                self.forms
                 ),
         )
-        boton_add.grid(row=16, column=0, sticky="nsew", pady=8, padx=8)
+        self.boton_add.grid(row=16, column=0, sticky="nsew", pady=8, padx=8)
 
-        boton_clean = Button(
+        self.boton_clean = Button(
             self.master,
             text="LIMPIAR",
-            command=lambda: interface_management.clean_fields(
-                var_titulo,
-                var_estilo,
-                var_desarrollador,
-                var_precio,
-                var_search,
-                forms
+            command=lambda: self.interface_management.clean_fields(
+                self.var_titulo,
+                self.var_estilo,
+                self.var_desarrollador,
+                self.var_precio,
+                self.var_search,
+                self.forms
             ),
         )
-        boton_clean.grid(row=16, column=6, sticky="nsew", pady=8, padx=8)
+        self.boton_clean.grid(row=16, column=6, sticky="nsew", pady=8, padx=8)
 
-        boton_modify = Button(
+        self.boton_modify = Button(
             self.master,
             text=" MODIFICAR ",
-            command=lambda: data_management.modify_item(
-                var_titulo,
-                var_estilo,
-                var_desarrollador,
-                var_precio,
-                forms))
-        boton_modify.grid(row=6, column=6, sticky="nsew", pady=8, padx=8)
+            command=lambda: self.data_management.modify_item(
+                self.var_titulo,
+                self.var_estilo,
+                self.var_desarrollador,
+                self.var_precio,
+                self.forms))
+        self.boton_modify.grid(row=6, column=6, sticky="nsew", pady=8, padx=8)
 
-        boton_del = Button(
+        self.boton_del = Button(
             self.master, text=" BORRAR ",
-            command=lambda: data_management.del_item(forms)
+            command=lambda: self.data_management.del_item(self.forms)
         )
-        boton_del.grid(row=4, column=6, sticky="nsew", pady=8, padx=8)
+        self.boton_del.grid(row=4, column=6, sticky="nsew", pady=8, padx=8)
 
-        boton_colors = Button(
+        self.boton_colors = Button(
             self.master, text="Change Colors",
-            command=lambda: interface_management.change_colors(element_list)
+            command=lambda: self.interface_management.change_colors(
+                element_list
             )
-        boton_colors.grid(row=2, column=6, sticky="nsew", pady=8, padx=8)
+            )
+        self.boton_colors.grid(row=2, column=6, sticky="nsew", pady=8, padx=8)
 
         # lista de elementos de la interfaz
-        element_list = [self.master, buscar, titulo, estilo, desarrollador,
-                        precio, entry_search, entry_add_titulo,
-                        entry_add_estilo, entry_add_desarrollador,
-                        entry_add_precio, boton_search, boton_add, boton_clean,
-                        boton_modify, boton_del, boton_colors]
+        element_list = [self.master, self.buscar, self.titulo, self.estilo,
+                        self.desarrollador, self.precio, self.entry_search,
+                        self.entry_add_titulo, self.entry_add_estilo,
+                        self.entry_add_desarrollador, self.entry_add_precio,
+                        self.boton_search, self.boton_add, self.boton_clean,
+                        self.boton_modify, self.boton_del, self.boton_colors]
 
-        data_management.connect(forms)
+        self.data_management.actualizar_tree(self.forms)
