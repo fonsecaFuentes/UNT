@@ -1,7 +1,9 @@
 import re
 
 
+# Validaciones
 class FieldValidation():
+    # Valida que los campos de entrada no estén vacíos.
     def validate_fields(self, titulo, estilo, desarrollador, precio):
         nulo = r"^(?!\s*$).+"
 
@@ -15,6 +17,7 @@ class FieldValidation():
         else:
             return False
 
+    # Valida el formato del precio.
     def validate_price(self, precio):
         numero = r"^\d+(\.\d{1,2})?$"
         if re.match(numero, precio):

@@ -7,6 +7,7 @@ from model_orm import DataManagement
 from model_orm import InterfaceManagement
 
 
+# Clase MyButton para crear botones personalizados
 class MyButton():
     def __init__(
         self, parent,
@@ -28,6 +29,7 @@ class MyButton():
         self.button.configure(**kwargs)
 
 
+# Clase MyEntry para crear campos de entrada personalizados
 class MyEntry():
     def __init__(
         self, parent,
@@ -51,6 +53,7 @@ class MyEntry():
         self.entry.configure(**kwargs)
 
 
+# Clase MyLabel para crear etiquetas personalizadas
 class MyLabel():
     def __init__(
         self, parent,
@@ -72,6 +75,7 @@ class MyLabel():
         self.label.configure(**kwargs)
 
 
+# Clase MyLayout para crear diseños personalizados
 class MyLayout(MyLabel):
     def __init__(
         self, text,
@@ -99,8 +103,10 @@ class MyLayout(MyLabel):
         )
 
 
+# Clase principal para la aplicación
 class MyApp():
     def __init__(self, master):
+        # Configuración inicial de la aplicación
         self.master = master
         self.data_management = DataManagement()
         self.interface_management = InterfaceManagement()
@@ -108,14 +114,14 @@ class MyApp():
 
         self.master.title("Lista de Juegos")
 
-        # variables
+        # variables para almacenar datos de entrada
         self.var_title = StringVar()
         self.var_gender = StringVar()
         self.var_developer = StringVar()
         self.var_price = StringVar()
         self.var_search = StringVar()
 
-        # TREEVIEW
+        # Configuración de TREEVIEW
         self.forms = ttk.Treeview(self.master)
         self.forms["columns"] = ("title", "gender", "developer", "price")
         self.forms.column("#0", width=0, minwidth=0)
@@ -173,73 +179,82 @@ class MyApp():
             padx=8
         )
 
+        # Label de busqueda
         self.search = MyLabel(
             self.master,
             text="BUSCAR",
             row=2, column=0, sticky="w", pady=1, padx=8
         )
 
+        # Label título
         self.title = MyLabel(
             self.master,
             text="Título",
             row=12, column=0, sticky="w", pady=8, padx=8
         )
 
+        # Label de genero
         self.gender = MyLabel(
             self.master,
             text="Género",
             row=14, column=0, sticky="w", pady=8, padx=8
         )
 
+        # Label de desarrollador
         self.developer = MyLabel(
             self.master,
             text="Desarrollador",
             row=12, column=6, sticky="e", pady=0, padx=8
         )
 
+        # Label de precio
         self.price = MyLabel(
             self.master,
             text="Precio",
             row=14, column=6, sticky="e", pady=0, padx=8
         )
 
-        # imputs
+        # Imputs
 
-        # imput de busqueda
+        # Imput de busqueda
         self.entry_search = MyEntry(
             self.master,
             textvariable=self.var_search,
             row=3, column=0, columnspan=None, sticky="nsew", pady=8, padx=8
         )
 
-        # imputs agregar y modificar
+        # Imputs agregar y modificar
+        # Imput de titulo
         self.entry_add_title = MyEntry(
             self.master,
             textvariable=self.var_title,
             row=13, column=0, columnspan=2, sticky="nsew", pady=8, padx=8
         )
 
+        # Imput de genero
         self.entry_add_gender = MyEntry(
             self.master,
             textvariable=self.var_gender,
             row=15, column=0, columnspan=2, sticky="nsew", pady=8, padx=8
         )
 
+        # Imput de desarrollador
         self.entry_add_developer = MyEntry(
             self.master,
             textvariable=self.var_developer,
             row=13, column=3, columnspan=4, sticky="nsew", pady=8, padx=8
         )
 
+        # Imput de precio
         self.entry_add_price = MyEntry(
             self.master,
             textvariable=self.var_price,
             row=15, column=3, columnspan=4, sticky="nsew", pady=8, padx=8
         )
 
-        # botones
+        # Botones
 
-        # boton de busqueda
+        # Boton de busqueda
         self.boton_search = MyButton(
             self.master,
             text="Buscar",
@@ -249,9 +264,7 @@ class MyApp():
             row=3, column=6, sticky="nsew", pady=8, padx=8
         )
 
-        # botones agregar, modificar, borrar y limpiar campos
-
-        # boton agregar
+        # Boton agregar
         self.boton_add = MyButton(
             self.master,
             text="AGREGAR",
@@ -265,7 +278,7 @@ class MyApp():
             row=16, column=0, sticky="nsew", pady=8, padx=8
         )
 
-        # boton limpiar campos
+        # Boton limpiar campos
         self.boton_clean = MyButton(
             self.master,
             text="LIMPIAR",
@@ -280,7 +293,7 @@ class MyApp():
             row=16, column=6, sticky="nsew", pady=8, padx=8
         )
 
-        # boton modificar
+        # Boton modificar
         self.boton_modify = MyButton(
             self.master,
             text=" MODIFICAR ",
@@ -294,7 +307,7 @@ class MyApp():
             row=6, column=6, sticky="nsew", pady=8, padx=8
         )
 
-        # boton borrar
+        # Boton borrar
         self.boton_del = MyButton(
             self.master,
             text=" BORRAR ",
@@ -302,7 +315,7 @@ class MyApp():
             row=4, column=6, sticky="nsew", pady=8, padx=8
         )
 
-        # boton cambiar los colores
+        # Boton cambiar los colores
         self.boton_colors = MyButton(
             self.master,
             text="Change Colors",
@@ -312,6 +325,7 @@ class MyApp():
 
         self.data_management.actualizar_tree(self.forms)
 
+    # Metodo para cambiar los colores
     def change_colors(self):
         if self.light:
             self.bg_color = "#E0E0E0"
@@ -328,6 +342,7 @@ class MyApp():
             self.bg_color, self.fg_color, self.highlight_color
         )
 
+    # Metodo para configurar los colores
     def configure_colors(self, bg_color, fg_color, highlight_color):
         list_buttons = [
             self.boton_colors, self.boton_search, self.boton_add,
