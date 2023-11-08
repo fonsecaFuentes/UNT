@@ -10,6 +10,7 @@ from message_handling import MenssageHandler
 from decorators import registry_decorator
 from decorators import del_decorator
 from decorators import update_decrorator
+from observer import Subject
 
 
 # Creación de la base de datos
@@ -56,7 +57,7 @@ class Games(Model):
 
 
 # Manejo de la base de datos
-class DataManagement():
+class DataManagement(Subject):
     def __init__(self):
         self.validation = FieldValidation()
         self.messages = MenssageHandler()
@@ -94,6 +95,14 @@ class DataManagement():
                     game.price = float(price)
                     game.save()
                     self.actualizar_tree(forms)
+                    message_notify = "Se ha agregado un nuevo juego..."
+                    self.notify_observers(
+                        message_notify,
+                        title,
+                        gender,
+                        developer,
+                        price
+                    )
 
                     info = "Juego agregado exitosamente."
                     message.message_info(info)
@@ -129,8 +138,17 @@ class DataManagement():
                     for element in value:
                         item = forms.item(element)
                         delete = Games.get(Games.id == item["text"])
+                        message_notify = "Se ha eliminado un juego..."
+                        self.notify_observers(
+                            message_notify,
+                            delete.title,
+                            delete.gender,
+                            delete.developer,
+                            delete.price
+                        )
                         delete.delete_instance()
 
+                    self.actualizar_tree(forms)
                     info = "datos borrados exitosamente."
                     message.message_info(info)
 
@@ -141,8 +159,6 @@ class DataManagement():
                     ErrorHandling.handle_file_not_found()
                 except ValueError:
                     ErrorHandling.handle_value_error()
-
-            self.actualizar_tree(forms)
 
     # Modificar datos
     @update_decrorator
@@ -188,8 +204,16 @@ class DataManagement():
                         ErrorHandling.handle_value_error()
 
                     self.actualizar_tree(forms)
+                    message_notify = "Se ha modificado un juego..."
+                    self.notify_observers(
+                        message_notify,
+                        title,
+                        gender,
+                        developer,
+                        price
+                    )
 
-                    info = "Juego agregado exitosamente."
+                    info = "Juego modificado exitosamente."
                     message.message_info(info)
 
                 else:

@@ -1,0 +1,623 @@
+Se ha dado un error: ('Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-Ingreso de nuevo registro\n-', '\nElementos guardados:Título:', 'Life Of Pi', 'Género:', 'SoulLike', 'Desarrollador:', 'Nwits', 'Precio:', '13566.0', '-------------------------', '\n') (02 - 11 - 2023  19:08)
+Se ha dado un error: ('Ingreso de nuevo registro\n-------------------------', '\nElementos guardados:\nTítulo:', 'Life Of Pi\nGénero:', 'SoulLike\nDesarrollador:', 'Nwits\nPrecio:', '13566.0\n-------------------------', '\n') (02 - 11 - 2023  19:14)
+Se ha dado un error: Ingreso de nuevo registro
+-------------------------
+
+Elementos guardados:
+Título:
+Life Of Pi
+Género:
+SoulLike
+Desarrollador:
+Nwits
+Precio:
+13566.0
+-------------------------
+
+ (02 - 11 - 2023  19:20)
+Ingreso de nuevo registro
+-------------------------
+
+Elementos guardados:
+Título:
+Life Of Pi
+Género:
+SoulLike
+Desarrollador:
+Nwits
+Precio:
+13566.0
+-------------------------
+
+ (02 - 11 - 2023  19:22)
+Ingreso de nuevo registro
+-------------------------
+
+Elementos guardados:
+Titulo:Life Of Pi
+Genero:SoulLike
+Desarrollador:Nwits
+Precio:13566.0
+-------------------------
+
+ (02 - 11 - 2023  19:22)
+Ingreso de nuevo registro
+-------------------------
+
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+-------------------------
+
+ (02 - 11 - 2023  19:23)
+('Ingreso de nuevo registro', '-------------------------', 'Elementos guardados:', 'Titulo:', ' ', 'Life Of Pi', 'Genero:', ' ', 'SoulLike', 'Desarrollador:', ' ', 'Nwits', 'Precio:', ' ', 13566.0, '-------------------------') (02 - 11 - 2023  19:30)
+Ingreso de nuevo registro
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+-------------------------
+
+ (02 - 11 - 2023  19:36)
+Ingreso de nuevo registro
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+-------------------------
+
+ (02 - 11 - 2023  19:36)
+E
+l
+e
+m
+e
+n
+t
+o
+s
+ 
+e
+l
+i
+m
+i
+n
+a
+d
+o
+s
+:
+
+
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+
+T
+i
+t
+u
+l
+o
+:
+ 
+L
+i
+f
+e
+ 
+O
+f
+ 
+P
+i
+
+
+G
+e
+n
+e
+r
+o
+:
+ 
+S
+o
+u
+l
+L
+i
+k
+e
+
+
+D
+e
+s
+a
+r
+r
+o
+l
+l
+a
+d
+o
+r
+:
+ 
+N
+w
+i
+t
+s
+
+
+P
+r
+e
+c
+i
+o
+:
+ 
+1
+3
+5
+6
+6
+.
+0
+
+
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+- (02 - 11 - 2023  19:39)
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+
+E
+l
+e
+m
+e
+n
+t
+o
+s
+ 
+g
+u
+a
+r
+d
+a
+d
+o
+s
+:
+
+
+T
+i
+t
+u
+l
+o
+:
+ 
+L
+i
+f
+e
+ 
+O
+f
+ 
+P
+i
+
+
+G
+e
+n
+e
+r
+o
+:
+ 
+S
+o
+u
+l
+L
+i
+k
+e
+
+
+D
+e
+s
+a
+r
+r
+o
+l
+l
+a
+d
+o
+r
+:
+ 
+N
+w
+i
+t
+s
+
+
+P
+r
+e
+c
+i
+o
+:
+ 
+1
+3
+5
+6
+6
+.
+0
+
+
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+- (02 - 11 - 2023  19:40)
+-------------------------
+
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:41)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:42)
+-------------------------
+Elementos eliminados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:43)
+-------------------------
+Elementos eliminados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:43)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:45)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:45)
+-------------------------
+Elementos eliminados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:45)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi1
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:45)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi2
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:46)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi3
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:46)
+-------------------------
+Elementos eliminados:
+Titulo: Life Of Pi3
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:46)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:46)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:46)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:46)
+-------------------------
+Elementos eliminados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:46)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio:13566.0
+------------------------- (02 - 11 - 2023  19:50)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio:13566.0
+------------------------- (02 - 11 - 2023  19:50)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio:13566.0
+------------------------- (02 - 11 - 2023  19:50)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio:13566.0
+------------------------- (02 - 11 - 2023  19:55)
+-------------------------
+Elementos eliminados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:55)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio:13566.0
+------------------------- (02 - 11 - 2023  19:55)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio:13566.0
+------------------------- (02 - 11 - 2023  19:55)
+-------------------------
+Elementos eliminados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:55)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio:13566.0
+------------------------- (02 - 11 - 2023  19:56)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio:13566.0
+------------------------- (02 - 11 - 2023  19:56)
+-------------------------
+Elementos eliminados:
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+Titulo: Life Of Pi
+Genero: SoulLike
+Desarrollador: Nwits
+Precio: 13566.0
+------------------------- (02 - 11 - 2023  19:56)
+-------------------------
+Elementos modificados:
+Titulo: Life Of Pi
+------------------------- (02 - 11 - 2023  20:00)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Piasda
+Genero: SoulLike
+Desarrollador: Nwits
+Precio:13566.0
+------------------------- (02 - 11 - 2023  20:01)
+-------------------------
+Elementos guardados:
+Titulo: Life Of Piasda
+Genero: SoulLike
+Desarrollador: Nwits
+Precio:13566.0
+------------------------- (02 - 11 - 2023  20:01)
+-------------------------
+Elementos modificados:
+Genero: SoulLikedddd
+------------------------- (02 - 11 - 2023  20:02)
+-------------------------
+Elementos modificados:
+Titulo: Life Of Piasdaddaaaa
+------------------------- (02 - 11 - 2023  20:03)
+-------------------------
+Elementos modificados:
+Precio: 13566.055555555
+------------------------- (02 - 11 - 2023  20:03)
+-------------------------
+Elementos modificados:
+Desarrollador: Nwitsssss
+------------------------- (02 - 11 - 2023  20:03)
+-------------------------
+Elementos modificados:
+Precio: 13566.055555555
+------------------------- (02 - 11 - 2023  20:03)
+-------------------------
+Elementos modificados:
+Desarrollador: Nwits3333
+------------------------- (02 - 11 - 2023  20:03)
+-------------------------
+Elementos modificados:
+Genero: SoulLikessdad
+------------------------- (02 - 11 - 2023  20:04)
+-------------------------
+Elementos modificados:
+Genero: SoulLikeWWWWWWWWWWWWWWW
+------------------------- (02 - 11 - 2023  20:05)
