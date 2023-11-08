@@ -621,3 +621,10 @@ Genero: SoulLikessdad
 Elementos modificados:
 Genero: SoulLikeWWWWWWWWWWWWWWW
 ------------------------- (02 - 11 - 2023  20:05)
+-------------------------
+Elementos guardados:
+Titulo: Lies of Pi
+Genero: SoulLike
+Desarrollador: Nwesq
+Precio:12344
+------------------------- (08 - 11 - 2023  19:52)
