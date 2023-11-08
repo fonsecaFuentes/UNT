@@ -628,3 +628,10 @@ Genero: SoulLike
 Desarrollador: Nwesq
 Precio:12344
 ------------------------- (08 - 11 - 2023  19:52)
+-------------------------
+Elementos guardados:
+Titulo: Diablo 4
+Genero: RPG Isometrico
+Desarrollador: Blizzard
+Precio:24566
+------------------------- (08 - 11 - 2023  19:58)
