@@ -16,7 +16,7 @@ def register_decorator(message):
         os.makedirs(file_dir)
     with open(txt_path, "a") as log:
         timestamp = datetime.datetime.now().strftime("%d - %m - %Y  %H:%M")
-        log.write(f"{message} \nAccion realizada: ({timestamp})\n")
+        log.write(f"{message}\nAccion realizada: ({timestamp})\n")
 
 
 # Decorador para registrar la entrada de nuevos registros

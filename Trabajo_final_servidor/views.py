@@ -5,6 +5,9 @@ from tkinter import Entry
 from tkinter import StringVar
 from model_orm import DataManagement
 from model_orm import InterfaceManagement
+from connect import try_connection
+from connect import stop_server
+from client import send_data
 
 
 # Clase MyButton para crear botones personalizados
@@ -364,7 +367,7 @@ class MyApp():
         self.boton_connect = MyButton(
             self.master,
             text=" CONNECT ",
-            command=lambda: self.change_colors(),
+            command=lambda: try_connection(),
             row=3, column=7, sticky="nsew", pady=8, padx=8
         )
 
@@ -372,7 +375,7 @@ class MyApp():
         self.boton_disconnect = MyButton(
             self.master,
             text=" DISCONNECT ",
-            command=lambda: self.change_colors(),
+            command=lambda: stop_server(),
             row=4, column=7, sticky="nsew", pady=8, padx=8
         )
 
@@ -380,7 +383,7 @@ class MyApp():
         self.boton_send_data = MyButton(
             self.master,
             text=" SEND DATA ",
-            command=lambda: self.change_colors(),
+            command=lambda: send_data(),
             row=6, column=7, sticky="nsew", pady=8, padx=8
         )
 
