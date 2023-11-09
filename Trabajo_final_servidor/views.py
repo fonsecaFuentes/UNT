@@ -211,14 +211,14 @@ class MyApp():
         self.developer = MyLabel(
             self.master,
             text="Desarrollador",
-            row=12, column=6, sticky="e", pady=0, padx=8
+            row=12, column=7, sticky="e", pady=0, padx=8
         )
 
         # Label de precio
         self.price = MyLabel(
             self.master,
             text="Precio",
-            row=14, column=6, sticky="e", pady=0, padx=8
+            row=14, column=7, sticky="e", pady=0, padx=8
         )
 
         # Imputs
@@ -269,7 +269,7 @@ class MyApp():
             textvariable=self.var_developer,
             row=13,
             rowspan=None,
-            column=3,
+            column=4,
             columnspan=4,
             sticky="nsew",
             pady=8,
@@ -282,7 +282,7 @@ class MyApp():
             textvariable=self.var_price,
             row=15,
             rowspan=None,
-            column=3,
+            column=4,
             columnspan=4,
             sticky="nsew",
             pady=8,
@@ -327,7 +327,7 @@ class MyApp():
                 self.var_search,
                 self.forms
             ),
-            row=16, column=6, sticky="nsew", pady=8, padx=8
+            row=16, column=7, sticky="nsew", pady=8, padx=8
         )
 
         # Boton modificar
@@ -360,6 +360,30 @@ class MyApp():
             row=2, column=6, sticky="nsew", pady=8, padx=8
         )
 
+        # Boton conectar
+        self.boton_connect = MyButton(
+            self.master,
+            text=" CONNECT ",
+            command=lambda: self.change_colors(),
+            row=3, column=7, sticky="nsew", pady=8, padx=8
+        )
+
+        # Boton desconectar
+        self.boton_disconnect = MyButton(
+            self.master,
+            text=" DISCONNECT ",
+            command=lambda: self.change_colors(),
+            row=4, column=7, sticky="nsew", pady=8, padx=8
+        )
+
+        # Boton enviar datos
+        self.boton_send_data = MyButton(
+            self.master,
+            text=" SEND DATA ",
+            command=lambda: self.change_colors(),
+            row=6, column=7, sticky="nsew", pady=8, padx=8
+        )
+
         self.data_management.actualizar_tree(self.forms)
 
     # Metodo para cambiar los colores
@@ -383,7 +407,9 @@ class MyApp():
     def configure_colors(self, bg_color, fg_color, highlight_color):
         list_buttons = [
             self.boton_colors, self.boton_search, self.boton_add,
-            self.boton_clean, self.boton_modify, self.boton_del
+            self.boton_clean, self.boton_modify, self.boton_del,
+            self.boton_connect, self.boton_disconnect,
+            self.boton_send_data
         ]
         list_labels = [
             self.title, self.gender, self.developer, self.price,

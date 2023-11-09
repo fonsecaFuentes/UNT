@@ -16,7 +16,7 @@ def register_decorator(message):
         os.makedirs(file_dir)
     with open(txt_path, "a") as log:
         timestamp = datetime.datetime.now().strftime("%d - %m - %Y  %H:%M")
-        log.write(f"{message} ({timestamp})\n")
+        log.write(f"{message} \nAccion realizada: ({timestamp})\n")
 
 
 # Decorador para registrar la entrada de nuevos registros
@@ -45,9 +45,6 @@ def del_decorator(function):
             localmente para evitar un problema de importación circular"""
         from model_orm import Games
         value = list(args[0].selection())
-        print("Se ha eliminado un elemento")
-        print("-"*25)
-        print("Elementos eliminados:")
         deleted_data = []
         for element in value:
             item = args[0].item(element)
@@ -79,8 +76,6 @@ def update_decrorator(function):
             localmente para evitar un problema de importación circular"""
         from model_orm import Games
         value = list(args[4].selection())
-        print(value)
-
         for element in value:
             item = args[4].item(element)
             game_id = item["text"]
